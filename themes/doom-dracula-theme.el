@@ -1,4 +1,4 @@
-;;; doom-dracula-theme.el - based on https://draculatheme.com/
+;;; doom-dracula-theme.el - based on https://draculatheme.com/ -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -39,32 +39,32 @@ determine the exact padding."
   "A dark theme based on Dracula theme"
 
   ;; name        default   256       16
-  ((bg         '("#282a36" nil       nil            ))
-   (bg-alt     '("#1E2029" nil       nil            ))
-   (base0      '("#1E2029" "black"   "black"        ))
+  ((bg         '("#282a36" "#262626" nil            ))
+   (bg-alt     '("#1E2029" "#1c1c1c" nil            ))
+   (base0      '("#1E2029" "#1c1c1c"   "black"      ))
    (base1      '("#282a36" "#1e1e1e" "brightblack"  ))
    (base2      '("#373844" "#2e2e2e" "brightblack"  ))
    (base3      '("#44475a" "#262626" "brightblack"  ))
    (base4      '("#565761" "#3f3f3f" "brightblack"  ))
    (base5      '("#6272a4" "#525252" "brightblack"  ))
-   (base6      '("#b6b6b2" "#6b6b6b" "brightblack"  ))
-   (base7      '("#ccccc7" "#979797" "brightblack"  ))
+   (base6      '("#b6b6b2" "#bbbbbb" "brightblack"  ))
+   (base7      '("#ccccc7" "#cccccc" "brightblack"  ))
    (base8      '("#f8f8f2" "#dfdfdf" "white"        ))
-   (fg         '("#f8f8f2" "#2d2d2d" "white"        ))
+   (fg         '("#f8f8f2" "#ffffff" "white"        ))
    (fg-alt     '("#e2e2dc" "#bfbfbf" "brightwhite"  ))
 
    (grey       base4)
    (red        '("#ff5555" "#ff6655" "red"          ))
-   (orange     '("#ffb86c" "#dd8844" "brightred"    ))
-   (green      '("#50fa7b" "#99bb66" "green"        ))
-   (teal       '("#0189cc" "#44b9b1" "brightgreen"  ))
-   (yellow     '("#f1fa8c" "#ECBE7B" "yellow"       ))
-   (blue       '("#61bfff" "#61bfff" "brightblue"   ))
-   (dark-blue  '("#0189cc" "#2257A0" "blue"         ))
-   (magenta    '("#ff79c6" "#c678dd" "magenta"      ))
-   (violet     '("#bd93f9" "#a9a1e1" "brightmagenta"))
-   (cyan       '("#8be9fd" "#46D9FF" "brightcyan"   ))
-   (dark-cyan  '("#8be9fd" "#5699AF" "cyan"         ))
+   (orange     '("#ffb86c" "#ffbb66" "brightred"    ))
+   (green      '("#50fa7b" "#55ff77" "green"        ))
+   (teal       '("#0189cc" "#0088cc" "brightgreen"  ))
+   (yellow     '("#f1fa8c" "#ffff88" "yellow"       ))
+   (blue       '("#61bfff" "#66bbff" "brightblue"   ))
+   (dark-blue  '("#0189cc" "#0088cc" "blue"         ))
+   (magenta    '("#ff79c6" "#ff77cc" "magenta"      ))
+   (violet     '("#bd93f9" "#bb99ff" "brightmagenta"))
+   (cyan       '("#8be9fd" "#88eeff" "brightcyan"   ))
+   (dark-cyan  '("#8be9fd" "#88eeff" "cyan"         ))
 
    ;; face categories -- required for all themes
    (highlight      violet)
@@ -78,7 +78,7 @@ determine the exact padding."
    (keywords       magenta)
    (methods        teal)
    (operators      violet)
-   (type           blue)
+   (type           violet)
    (strings        yellow)
    (variables      base8)
    (numbers        red)
@@ -157,23 +157,24 @@ determine the exact padding."
 
    ;; --- major-mode faces -------------------
    ;; css-mode / scss-mode
-   (css-proprietary-property :foreground orange)
-   (css-property             :foreground green)
-   (css-selector             :foreground blue)
+   (css-proprietary-property :foreground violet)
+   (css-property             :foreground violet)
+   (css-selector             :foreground green)
 
    ;; markdown-mode
    (markdown-markup-face :foreground base5)
    (markdown-header-face :inherit 'bold :foreground red)
-   (markdown-code-face :background (doom-lighten base3 0.05))
+   ((markdown-code-face &override) :background (doom-lighten base3 0.05))
 
    ;; org-mode
-   (org-level-1 :background base1 :foreground level1 :height 1.2 :weight 'bold)
-   (org-level-2 :foreground level2 :weight 'bold)
-   (org-level-3 :inherit 'org-level-2 :foreground level3)
-   (org-level-4 :inherit 'org-level-2 :foreground level4)
-   (org-level-5 :inherit 'org-level-2 :foreground level5)
-   (org-level-6 :inherit 'org-level-2 :foreground level6)
-   (org-level-7 :inherit 'org-level-2 :foreground level7)
+   ((outline-1 &override) :foreground level1)
+   (outline-2 :inherit 'outline-1 :foreground level2)
+   (outline-3 :inherit 'outline-1 :foreground level3)
+   (outline-4 :inherit 'outline-1 :foreground level4)
+   (outline-5 :inherit 'outline-1 :foreground level5)
+   (outline-6 :inherit 'outline-1 :foreground level6)
+   (outline-7 :inherit 'outline-1 :foreground level7)
+
    (org-todo :foreground orange :bold 'inherit :background (doom-darken base1 0.02))
    (org-done :foreground green :strike-through nil :background base2 :bold t)
    (org-headline-done :foreground base4 :strike-through nil)
@@ -182,8 +183,8 @@ determine the exact padding."
    (org-agenda-dimmed-todo-face :foreground comments)
    (org-agenda-done :foreground base4)
    (org-agenda-structure :foreground violet)
-   (org-block            :background (doom-darken base1 0.125) :foreground violet)
-   (org-block-begin-line :background (doom-darken base1 0.125) :foreground comments)
+   ((org-block &override) :background (doom-darken base1 0.125) :foreground violet)
+   ((org-block-begin-line &override) :background (doom-darken base1 0.125) :foreground comments)
    (org-code :foreground yellow)
    (org-column :background base1)
    (org-column-title :background base1 :bold t :underline t)
@@ -203,6 +204,42 @@ determine the exact padding."
    (org-table :foreground violet)
    (org-upcoming-deadline :foreground yellow)
    (org-warning :foreground magenta)
+
+   ;; tooltip and company
+   (tooltip              :background bg-alt :foreground fg)
+   (company-tooltip-selection     :background base3)
+
+   ;; rjsx-mode
+   (rjsx-tag :foreground magenta)
+   (rjsx-attr :foreground green :slant 'italic :weight 'medium)
+
+   ;; js2-mode
+   (js2-external-variable :foreground violet)
+   (js2-function-param :foreground cyan)
+   (js2-jsdoc-html-tag-delimiter :foreground yellow)
+   (js2-jsdoc-html-tag-name :foreground dark-blue)
+   (js2-jsdoc-value :foreground yellow)
+   (js2-private-function-call :foreground cyan)
+   (js2-private-member :foreground base7)
+
+   ;; web-mode
+   (web-mode-block-control-face :foreground orange)
+   (web-mode-block-delimiter-face :foreground orange)
+   (web-mode-builtin-face :foreground orange)
+   (web-mode-css-property-name-face :foreground violet)
+   (web-mode-css-selector-face :foreground green)
+   (web-mode-html-attr-name-face :foreground violet)
+   (web-mode-html-attr-value-face :foreground green)
+   (web-mode-html-tag-bracket-face :inherit 'font-lock-comment-face)
+   (web-mode-html-tag-face :foreground magenta :weight 'bold)
+   (web-mode-keyword-face :foreground magenta)
+   (web-mode-preprocessor-face :foreground orange)
+   (web-mode-string-face :foreground yellow)
+   (web-mode-type-face :foreground violet)
+
+   ;; highlight-quoted-mode
+   (highlight-quoted-symbol :foreground cyan)
+   (highlight-quoted-quote  :foreground magenta)
    )
 
   ;; --- extra variables ---------------------

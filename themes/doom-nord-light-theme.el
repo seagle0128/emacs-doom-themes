@@ -1,4 +1,4 @@
-;;; doom-nord-light-theme.el --- inspired by Nord
+;;; doom-nord-light-theme.el --- inspired by Nord -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -174,7 +174,7 @@ determine the exact padding."
    ;; markdown-mode
    (markdown-markup-face :foreground base5)
    (markdown-header-face :inherit 'bold :foreground red)
-   (markdown-code-face :background (doom-lighten base3 0.05))
+   ((markdown-code-face &override) :background (doom-lighten base3 0.05))
 
    (nav-flash-face :background region :foreground base8 :weight 'bold)
    ;; org-mode

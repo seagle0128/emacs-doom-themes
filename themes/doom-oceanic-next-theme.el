@@ -1,4 +1,4 @@
-;;; doom-oceanic-next-theme.el --- inspired by Oceanic Next
+;;; doom-oceanic-next-theme.el --- inspired by Oceanic Next -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 (defgroup doom-oceanic-next-theme nil
@@ -146,7 +146,7 @@ determine the exact padding."
    (doom-modeline-buffer-project-root :foreground green :weight 'bold)
 
    ;; ivy-mode
-   (ivy-current-match :background dark-blue :distant-foreground base0 :weight 'normal)
+   (ivy-current-match :background base2 :distant-foreground base0 :weight 'bold)
 
    ;; --- major-mode faces -------------------
    ;; css-mode / scss-mode
@@ -157,7 +157,7 @@ determine the exact padding."
    ;; markdown-mode
    (markdown-markup-face :foreground base5)
    (markdown-header-face :inherit 'bold :foreground blue)
-   (markdown-code-face :background (doom-lighten bg 0.05))
+   ((markdown-code-face &override) :background (doom-lighten bg 0.05))
 
    ;; org-mode
    (org-hide :foreground hidden)

@@ -1,4 +1,4 @@
-;;; doom-solarized-dark-theme.el --- inspired by VS Code Solarized Dark
+;;; doom-solarized-dark-theme.el --- inspired by VS Code Solarized Dark -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -113,19 +113,30 @@ determine the exact padding."
    ((line-number &override) :foreground base4)
    ((line-number-current-line &override) :foreground fg)
 
+   (helm-selection :inherit 'bold
+                   :background selection
+                   :distant-foreground bg
+                   :extend t)
+
    (font-lock-comment-face
     :foreground comments
     :background (if doom-solarized-dark-comment-bg (doom-lighten bg 0.05)))
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)
+   (font-lock-keyword-face
+    :weight 'bold
+    :foreground keywords)
+   (font-lock-constant-face
+    :weight 'bold
+    :foreground constants)
 
    ;; Centaur tabs
    (centaur-tabs-active-bar-face :background blue)
    (centaur-tabs-modified-marker-selected :inherit 'centaur-tabs-selected
-					  :foreground blue)
+                                          :foreground blue)
    (centaur-tabs-modified-marker-unselected :inherit 'centaur-tabs-unselected
-					    :foreground blue)
+                                            :foreground blue)
    ;; Doom modeline
    (doom-modeline-bar :background blue)
 
@@ -163,7 +174,7 @@ determine the exact padding."
    ((markdown-italic-face &override) :foreground fg-alt)
 
    ;; outline (affects org-mode)
-   ((outline-1 &override) :foreground blue :background nil)
+   ((outline-1 &override) :foreground blue)
    ((outline-2 &override) :foreground green)
    ((outline-3 &override) :foreground teal)
    ((outline-4 &override) :foreground (doom-darken blue 0.2))
@@ -173,10 +184,9 @@ determine the exact padding."
    ((outline-8 &override) :foreground (doom-darken green 0.4))
 
    ;; org-mode
-   (org-hide              :foreground hidden)
-   (org-block             :background base0)
-   (org-block-begin-line  :foreground comments :background base0)
-   (org-block-end-line    :inherit 'org-block-begin-line)
+   ((org-block &override) :background base0)
+   ((org-block-begin-line &override) :foreground comments :background base0)
+   (org-hide :foreground hidden)
    (solaire-org-hide-face :foreground hidden))
   ;; --- extra variables ---------------------
   ;; ()

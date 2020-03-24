@@ -1,4 +1,4 @@
-;;; doom-opera-light-theme.el --- Opera-Light theme
+;;; doom-opera-light-theme.el --- Opera-Light theme -*- no-byte-compile: t; -*-
 
 (require 'doom-themes)
 
@@ -112,6 +112,7 @@ determine the exact padding."
 
   ;; --- extra faces ------------------------
   (
+   ((lazy-highlight &override) :foreground base1 :weight 'bold)
    ((line-number &override) :foreground fg-alt)
    ((line-number-current-line &override) :foreground fg)
 
@@ -123,6 +124,13 @@ determine the exact padding."
     :foreground doc-comments)
 
    (doom-modeline-bar :background (if -modeline-bright modeline-bg highlight))
+
+   ;; ivy-posframe
+   (ivy-posframe :background bg-alt)
+   (ivy-posframe-border :background base1)
+
+   ;; ivy
+   (ivy-current-match :background base3)
 
    (mode-line
     :background modeline-bg :foreground modeline-fg

@@ -1,33 +1,33 @@
-;;; doom-palenight-theme.el --- inspired by Material-PaleNight -*- no-byte-compile: t; -*-
+;;; doom-material-theme.el --- inspired by Material Theme by equinusocio -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
-(defgroup doom-palenight-theme nil
+(defgroup doom-material-theme nil
   "Options for doom-themes"
   :group 'doom-themes)
 
-(defcustom doom-palenight-padded-modeline doom-themes-padded-modeline
+(defcustom doom-material-padded-modeline doom-themes-padded-modeline
   "If non-nil, adds a 4px padding to the mode-line.
 Can be an integer to determine the exact padding."
-  :group 'doom-palenight-theme
+  :group 'doom-material-theme
   :type '(choice integer boolean))
 
 ;;
-(def-doom-theme doom-palenight
-  "A dark theme inspired by Material-Palenight"
+(def-doom-theme doom-material
+  "A dark theme inspired by Material Theme by equinusocio"
 
   ;; name        default   256       16
-  ((bg         '("#292D3E" nil       nil))
-   (bg-alt     '("#242837" nil       nil))
-   (base0      '("#1c1f2b" "black"   "black"))
-   (base1      '("#1e212e" "#262626" "brightblack"))
-   (base2      '("#232635" "#303030" "brightblack"))
-   (base3      '("#3C435E" "#3a3a3a" "brightblack"))
-   (base4      '("#4E5579" "#444444" "brightblack"))
-   (base5      '("#676E95" "#585858" "brightblack"))
-   (base6      '("#697098" "#626262" "brightblack"))
-   (base7      '("#717CB4" "#767676" "brightblack"))
-   (base8      '("#A6Accd" "#a8a8a8" "white"))
+  ((bg         '("#263238" nil       nil))
+   (bg-alt     '("#1C262B" nil       nil))
+   (base0      '("#171F24" "black"   "black"))
+   (base1      '("#1C262B" "#262626" "brightblack"))
+   (base2      '("#222D32" "#303030" "brightblack"))
+   (base3      '("#171F24" "#3a3a3a" "brightblack"))
+   (base4      '("#314048" "#444444" "brightblack"))
+   (base5      '("#37474F" "#585858" "brightblack"))
+   (base6      '("#556369" "#626262" "brightblack"))
+   (base7      '("#737E84" "#767676" "brightblack"))
+   (base8      '("#9BA3A7" "#a8a8a8" "white"))
    (fg         '("#EEFFFF" "#e4e4e4" "brightwhite"))
    (fg-alt     '("#BFC7D5" "#bcbcbc" "white"))
 
@@ -50,8 +50,8 @@ Can be an integer to determine the exact padding."
    (vertical-bar   base2)
    (selection      base4)
    (builtin        blue)
-   (comments       base5)
-   (doc-comments   (doom-lighten base5 0.25))
+   (comments       base6)
+   (doc-comments   base6)
    (constants      orange)
    (functions      blue)
    (keywords       cyan)
@@ -76,8 +76,8 @@ Can be an integer to determine the exact padding."
    (modeline-fg-alt comments)
 
    (-modeline-pad
-    (when doom-palenight-padded-modeline
-      (if (integerp doom-palenight-padded-modeline) doom-palenight-padded-modeline 4))))
+    (when doom-material-padded-modeline
+      (if (integerp doom-material-padded-modeline) doom-material-padded-modeline 4))))
 
   ;; --- base faces ------------------------
   (((lazy-highlight &override) :background base4 :foreground fg :distant-foreground fg :bold bold)
@@ -123,6 +123,8 @@ Can be an integer to determine the exact padding."
    (dired-k-ignored :foreground cyan)
    (dired-k-added    :foreground vc-added)
 
+   ;; ivy
+   (ivy-current-match :background base5)
 
    ;; js2-mode
    (js2-jsdoc-tag              :foreground magenta)
@@ -150,4 +152,4 @@ Can be an integer to determine the exact padding."
    ;; tooltip
    (tooltip              :background (doom-darken bg-alt 0.2) :foreground fg)))
 
-(provide 'doom-palenight-theme)
+(provide 'doom-material-theme)

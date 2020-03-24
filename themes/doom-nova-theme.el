@@ -1,4 +1,4 @@
-;;; doom-nova-theme.el --- inspired by Trevord Miller's Nova
+;;; doom-nova-theme.el --- inspired by Trevord Miller's Nova -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 (defgroup doom-nova-theme nil
@@ -147,9 +147,6 @@ determine the exact padding."
    ((paren-face-mismatch &override) :foreground (doom-darken red 0.4) :background cyan)
 
    ;; org-mode
-   (org-level-1
-    :foreground blue :background (doom-darken bg 0.025)
-    :bold bold :height 1.2)
    (org-headline-done :foreground base7))
 
   ;; --- variables --------------------------

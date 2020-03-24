@@ -1,4 +1,4 @@
-;;; doom-outrun-electric-theme.el --- inspired by VS Code Outrun Electric
+;;; doom-outrun-electric-theme.el --- inspired by VS Code Outrun Electric -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -120,6 +120,17 @@ determine the exact padding."
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)
+   (font-lock-keyword-face
+    :weight 'bold
+    :foreground keywords)
+   (font-lock-constant-face
+    :weight 'bold
+    :foreground constants)
+   (font-lock-function-name-face
+    :weight 'bold
+    :foreground functions)
+
+   (vertical-border :foreground base5)
 
    ;; Centaur tabs
    (centaur-tabs-active-bar-face :background magenta)
@@ -163,7 +174,7 @@ determine the exact padding."
    ((markdown-italic-face &override) :foreground fg-alt)
 
    ;; outline (affects org-mode)
-   ((outline-1 &override) :foreground blue :background nil)
+   ((outline-1 &override) :foreground blue)
    ((outline-2 &override) :foreground green)
    ((outline-3 &override) :foreground teal)
    ((outline-4 &override) :foreground (doom-darken blue 0.2))
@@ -173,10 +184,9 @@ determine the exact padding."
    ((outline-8 &override) :foreground (doom-darken green 0.4))
 
    ;; org-mode
+   ((org-block &override) :background base0)
+   ((org-block-begin-line &override) :background base0)
    (org-hide              :foreground hidden)
-   (org-block             :background base0)
-   (org-block-begin-line  :foreground comments :background base0)
-   (org-block-end-line    :inherit 'org-block-begin-line)
    (solaire-org-hide-face :foreground hidden))
   ;; --- extra variables ---------------------
   ;; ()

@@ -1,4 +1,4 @@
-;; doom-gruvbox-theme.el --- inspired by morhetz Gruvbox
+;; doom-gruvbox-theme.el --- inspired by morhetz Gruvbox -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;; Compiler pacifier
@@ -214,7 +214,8 @@ determine the exact padding."
    (button :foreground green :underline t :bold t)
 
    ;; ediff
-   (ediff-fine-diff-A :background (doom-blend red bg 0.3) :weight 'bold)
+   (ediff-fine-diff-A    :background (doom-blend red bg 0.3) :weight 'bold)
+   (ediff-current-diff-A :background (doom-blend red bg 0.1))
 
    ;; flycheck
    (flycheck-error   :underline `(:style wave :color ,red)    :background base3)
@@ -224,6 +225,14 @@ determine the exact padding."
    ;; helm
    (helm-swoop-target-line-face :foreground magenta :inverse-video t)
 
+   ;; magit
+   (magit-section-heading             :foreground yellow :weight 'bold)
+   (magit-branch-current              :underline cyan :inherit 'magit-branch-local)
+   (magit-diff-hunk-heading           :background base3 :foreground fg-alt)
+   (magit-diff-hunk-heading-highlight :background accent :foreground fg)
+   (magit-diff-context                :foreground bg-alt :foreground fg-alt)
+
+ 
    ;;;;;;;; Major mode faces ;;;;;;;;
    ;; css-mode / scss-mode
    (css-proprietary-property :foreground keywords)
@@ -234,18 +243,15 @@ determine the exact padding."
    (markdown-url-face :foreground red)
    (markdown-pre-face  :foreground green)
    (markdown-link-face :inherit 'bold :foreground cyan)
-   (markdown-code-face :background (doom-lighten base2 0.045))
+   ((markdown-code-face &override) :background (doom-lighten base2 0.045))
 
    ;; org-mode
-   (org-level-1 :foreground yellow :bold bold)
-   (org-level-2 :inherit 'org-level-1 :foreground cyan)
-   (org-level-3 :bold bold :foreground green)
-   (org-level-4 :inherit 'org-level-3)
-   (org-level-5 :inherit 'org-level-3)
-   (org-level-6 :inherit 'org-level-3)
-   (org-ellipsis :underline nil :background base2 :foreground orange)
+   ((outline-1 &override) :foreground yellow)
+   ((outline-2 &override) :foreground cyan)
+   ((outline-3 &override) :foreground green)
+   (org-ellipsis :underline nil :foreground orange)
    (org-tag :foreground yellow :bold nil)
-   (org-quote :inherit 'italic :foreground base7 :background org-quote)
+   ((org-quote &override) :inherit 'italic :foreground base7 :background org-quote)
    (org-todo :foreground yellow :bold 'inherit)
    (org-list-dt :foreground yellow))
 

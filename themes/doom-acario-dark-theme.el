@@ -1,6 +1,7 @@
-;;; doom-acario-dark-theme.el --- Acario dark theme
+;;; doom-acario-dark-theme.el --- Acario dark theme -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
+;;; Variables
 (defgroup doom-acario-dark-theme nil
   "Options for doom-themes"
   :group 'doom-themes)
@@ -27,20 +28,21 @@ determine the exact padding."
   :group 'doom-acario-dark-theme
   :type '(or integer boolean))
 
-;;
+;;; Theme definition
 (def-doom-theme doom-acario-dark
   "A dark theme inspired by Acario"
 
+;;;; Colors
   ;; name        default   256         16
-  ((bg         '("#0D0E16" "color-232" "black"        ))
-   (bg-alt     '("#12141F" "color-234" nil            ))
+  ((bg         '("#0D0E16" "color-233" "black"        ))
+   (bg-alt     '("#040408" "color-232" "brightblack"  ))
    (base0      '("#0F1019" "color-234" "black"        ))
    (base1      '("#121212" "color-233" "brightblack"  ))
-   (base2      '("#1E1E33" "color-17"  "brightblack"  ))
-   (base3      '("#464A56" "color-237" "brightblack"  ))
-   (base4      '("#585C6C" "color-240" "brightblack"  ))
+   (base2      '("#1E1E33" "color-236" "brightblack"  ))
+   (base3      '("#464A56" "color-240" "brightblack"  ))
+   (base4      '("#585C6C" "color-60"  "brightblack"  ))
    (base5      '("#767676" "color-243" "brightblack"  ))
-   (base6      '("#959EA5" "color-246" "white"        ))
+   (base6      '("#959EA5" "color-109" "white"        ))
    (base7      '("#B2B2B2" "color-249" "white"        ))
    (base8      '("#D0D0D0" "color-252" "brightwhite"  ))
    (fg         '("#CEDBE5" "color-152" "brightwhite"  ))
@@ -55,16 +57,16 @@ determine the exact padding."
    (magenta    '("#8041D8" "color-98"  "magenta"      ))
    (cyan       '("#36D8BD" "color-79"  "cyan"         ))
 
-   (orange     '("#D85F00" "#D85F00"   "brightred"    ))
+   (orange     '("#D85F00" "color-166"   "brightred"    ))
    (teal       '("#2D9574" "color-29"  "brightcyan"   ))
    (violet     '("#AB11D8" "color-128" "brightmagenta"))
 
    (bg-blue    '("#0C213E" "color-17"  "brightblack"  ))
    (dark-blue  bg-blue)
-   (bg-cyan    '("#092D27" "#092D27"   "brightblack"  ))
+   (bg-cyan    '("#092D27" "color-23"   "brightblack"  ))
    (dark-cyan  bg-cyan)
 
-   ;; face categories -- required for all themes
+;;;; face categories -- required for all themes
    (highlight      orange)
    (vertical-bar   base0)
    (selection      bg-blue)
@@ -88,8 +90,8 @@ determine the exact padding."
    (vc-added       green)
    (vc-deleted     red)
 
-   ;; custom categories
-   (hidden     `(,(car bg) "black" "black"))
+;;;; custom categories
+   (hidden bg)
    (-modeline-bright doom-acario-dark-brighter-modeline)
    (-modeline-pad
     (when doom-acario-dark-padded-modeline
@@ -100,7 +102,7 @@ determine the exact padding."
 
    (modeline-bg
     (if -modeline-bright
-        (doom-darken blue 0.475)
+        (doom-blend blue bg-alt 0.35)
       `(,(car base2) ,@(cdr base0))))
    (modeline-bg-l
     (if -modeline-bright
@@ -109,18 +111,19 @@ determine the exact padding."
    (modeline-bg-inactive   (doom-darken bg 0.20))
    (modeline-bg-inactive-l `(,(doom-darken (car bg-alt) 0.2) ,@(cdr base0))))
 
-
-  ;; --- extra faces ------------------------
+;;;; --- extra faces ------------------------
   ((elscreen-tab-other-screen-face :background bg-blue :foreground fg-alt)
 
    (evil-goggles-default-face :inherit 'region :background (doom-blend region bg 0.5))
 
-   ;;; hl-fill-column-face
+;;;;; hl-fill-column-face
    (hl-fill-column-face :background bg-alt :foreground fg-alt)
 
+;;;;; line-number
    ((line-number &override) :foreground base4)
    ((line-number-current-line &override) :foreground orange :bold bold)
 
+;;;;; comments and doc
    (font-lock-comment-face
     :inherit 'fixed-pitch-serif-face
     :slant 'italic
@@ -130,13 +133,13 @@ determine the exact padding."
     :inherit 'font-lock-comment-face
     :foreground doc-comments)
 
-   ;; Flycheck
+;;;;; Flycheck
    (flycheck-popup-tip-face :background bg-blue :foreground fg-alt)
    (flycheck-posframe-info-face :background bg-blue :foreground fg-alt)
    (flycheck-posframe-warning-face :inherit 'warning)
    (flycheck-posframe-error-face :inherit 'error)
 
-   ;; Magit
+;;;;; Magit
    (magit-blame-culprit :foreground yellow)
    (magit-blame-header :foreground green)
    (magit-blame-sha1 :foreground yellow)
@@ -155,9 +158,9 @@ determine the exact padding."
    (magit-reflog-remote :foreground cyan)
    (magit-reflog-reset :foreground red)
    (magit-branch :foreground magenta :weight 'bold)
-   (magit-branch-current :background bg :foreground blue :weight 'bold :box t)
-   (magit-branch-local :background bg :foreground blue :weight 'bold)
-   (magit-branch-remote :background bg :foreground orange :weight 'bold)
+   (magit-branch-current :foreground blue :weight 'bold :box t)
+   (magit-branch-local :foreground blue :weight 'bold)
+   (magit-branch-remote :foreground orange :weight 'bold)
    (magit-diff-file-header :foreground yellow)
    (magit-diff-file-heading :foreground blue :weight 'light)
    (magit-diff-file-heading-highlight :foreground blue :weight 'bold)
@@ -203,6 +206,7 @@ determine the exact padding."
    (magithub-issue-number :foreground fg)
    (magithub-notification-reason :foreground fg)
 
+;;;;; Modeline, Solaire modeline and Doom modeline
    (mode-line
     :background modeline-bg :foreground modeline-fg
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg)))
@@ -211,6 +215,11 @@ determine the exact padding."
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive)))
    (mode-line-emphasis
     :foreground (if -modeline-bright base8 highlight))
+
+   (doom-modeline-bar :background (if -modeline-bright modeline-bg highlight))
+   (doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'bold)
+   (doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'bold)
+   (doom-modeline-buffer-project-root :foreground green :weight 'bold)
 
    (solaire-mode-line-face
     :inherit 'mode-line
@@ -221,42 +230,41 @@ determine the exact padding."
     :background modeline-bg-inactive-l
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive-l)))
 
-   ;; whitespace
+;;;;; whitespace
    (whitespace-indentation :inherit 'default)
    (whitespace-big-indent :inherit 'default)
 
-   ;; Doom modeline
-   (doom-modeline-bar :background (if -modeline-bright modeline-bg highlight))
-   (doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'bold)
-   (doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'bold)
-   (doom-modeline-buffer-project-root :foreground green :weight 'bold)
-
-   ;; ivy-mode
+;;;;; ivy-mode
    (ivy-current-match :background bg-blue :distant-foreground base0 :weight 'normal)
    (ivy-posframe :background base1 :foreground fg)
    (internal-border :background base7)
 
-   ;; --- major-mode faces -------------------
-   ;; css-mode / scss-mode
+;;;;; lsp-mode and lsp-ui-mode
+   (lsp-ui-peek-highlight :foreground yellow)
+   (lsp-ui-sideline-symbol-info :foreground (doom-blend comments bg 0.85)
+                                :background bg-alt)
+
+;;;; --- major-mode faces -------------------
+;;;;; css-mode / scss-mode
    (css-proprietary-property :foreground orange)
    (css-property             :foreground green)
    (css-selector             :foreground blue)
 
-   ;; markdown-mode
+;;;;; markdown-mode
    (markdown-markup-face :foreground base5)
    (markdown-header-face :inherit 'bold :foreground red)
-   (markdown-code-face :background (doom-lighten base3 0.05))
+   ((markdown-code-face &override) :background (doom-lighten base3 0.05))
 
-   ;; org-mode
-   (org-block :background bg-alt)
-   (org-block-begin-line :background bg :slant 'italic :fg comments)
-   (org-quote :background base1)
+;;;;; org-mode
+   ((org-block &override) :background bg-alt)
+   ((org-block-begin-line &override) :background bg :foreground comments :slant 'italic)
+   ((org-quote &override) :background base1)
 
    (org-hide :foreground hidden)
    (solaire-org-hide-face :foreground hidden))
 
 
-  ;; --- extra variables ---------------------
+  ;;;; --- extra variables ---------------------
   ;; ()
   )
 

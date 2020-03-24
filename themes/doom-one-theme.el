@@ -1,4 +1,4 @@
-;;; doom-one-theme.el --- inspired by Atom One Dark
+;;; doom-one-theme.el --- inspired by Atom One Dark -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -91,7 +91,7 @@ determine the exact padding."
     (when doom-one-padded-modeline
       (if (integerp doom-one-padded-modeline) doom-one-padded-modeline 4)))
 
-   (modeline-fg     nil)
+   (modeline-fg     fg)
    (modeline-fg-alt base5)
 
    (modeline-bg
@@ -157,7 +157,7 @@ determine the exact padding."
    ;; markdown-mode
    (markdown-markup-face :foreground base5)
    (markdown-header-face :inherit 'bold :foreground red)
-   (markdown-code-face :background (doom-lighten base3 0.05))
+   ((markdown-code-face &override) :background (doom-lighten base3 0.05))
 
    ;; org-mode
    (org-hide :foreground hidden)
